@@ -1,16 +1,19 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { merge } = require("webpack-merge");
-const common = require("./webpack.common.js");
+const path = require("path");
+const common = require("./webpack.common");
 
 module.exports = merge(common, {
   mode: "development",
-  devtool: "inline-source-map",
+  devtool: "eval-source-map",
   module: {
     rules: [
       {
         test: /\.(sa|sc|c)ss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [
+          "style-loader",
+          { loader: "css-loader", options: { sourceMap: true } },
+          { loader: "sass-loader", options: { sourceMap: true } },
+        ],
       },
     ],
   },
@@ -19,5 +22,9 @@ module.exports = merge(common, {
     port: 3000,
     hot: true,
     open: true,
+    client: {
+      overlay: true,
+    },
+    watchFiles: ["src/**/*"],
   },
 });
