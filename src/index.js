@@ -1,3 +1,5 @@
+import "./styles/main.scss";
+
 import summerbg from "./assets/summer-bg.jpg";
 import rainbg from "./assets/rainy-bg.jpg";
 import winterbg from "./assets/winter-bg.jpg";
